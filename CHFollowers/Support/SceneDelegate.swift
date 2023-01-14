@@ -14,17 +14,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
-        if #available(iOS 13.0, *) {
-            let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
-            tabBarAppearance.configureWithDefaultBackground()
-            tabBarAppearance.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            UITabBar.appearance().standardAppearance = tabBarAppearance
-
-            if #available(iOS 15.0, *) {
-                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-            }
-        }
-
         guard let windowScene = scene as? UIWindowScene else { return }
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = createTabbar()
@@ -49,6 +38,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func createTabbar() -> UITabBarController {
+        if #available(iOS 13.0, *) {
+            let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithDefaultBackground()
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+        }
         let tabbar = UITabBarController()
         UITabBar.appearance().tintColor = .systemGreen
 
